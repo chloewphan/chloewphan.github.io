@@ -175,6 +175,11 @@ video{display:block}
 .blog h2{font-size:clamp(40px,5vw,54px)}
 .blog img{width:min(815px,100%);margin:28px auto 0;border-radius:24px}
 .blog p{margin:16px auto 0;max-width:52ch;font-weight:300}
+.blog-link{text-decoration:none}
+.blog-link:hover{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:8px}
+.blog-img{display:block;width:fit-content;margin:0 auto;border-radius:24px}
+.blog-img:hover img{filter:brightness(1.04)}
+.blog .site-btn{margin-top:28px}
 
 /* Lightbox */
 .lightbox{opacity:0;transition:opacity 200ms var(--ease);position:fixed;inset:0;z-index:100;background:rgba(58,31,13,.82);display:grid;place-items:center;padding:max(24px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(24px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
@@ -343,8 +348,9 @@ video{display:block}
   <div class="band blog gutter">
     <img class="art" src="img/pg-blog-bg.webp" alt="" width="1200" height="900">
     <div class="inner center">
-      <h2 class="script">My blog</h2>
-      <img src="img/pg-blog.webp" width="815" height="453" alt="Chloe's Blog header with pink floral wallpaper, lace, a deer, an apple, and photos of Chloe">
+      <h2 class="script"><a class="blog-link" href="https://canva.link/chloe-phan-blog" target="_blank" rel="noopener">View my blog</a></h2>
+      <a class="blog-img" href="https://canva.link/chloe-phan-blog" target="_blank" rel="noopener" aria-label="Open Chloe's Blog"><img src="img/pg-blog.webp" width="815" height="453" alt="Chloe's Blog header with pink floral wallpaper, lace, a deer, an apple, and photos of Chloe"></a>
+      <a class="site-btn" href="https://canva.link/chloe-phan-blog" target="_blank" rel="noopener">Visit my blog</a>
     </div>
   </div>
   <div data-connect data-bg="pg"></div>
