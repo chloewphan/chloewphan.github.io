@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta property="og:title" content="Chloe Phan | Product & Visual Designer">
 <meta property="og:description" content="Product and visual designer studying Informatics and Urban Studies at UT Austin.">
-<meta property="og:image" content="img/home-hero.webp">
 <title>Chloe Phan Portfolio</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="Chloe Phan, product and visual designer studying Informatics and Urban Studies at UT Austin.">
@@ -33,7 +32,16 @@
   --stage:1200px;
   color-scheme:light;
 }
-*,*::before,*::after{box-sizing:border-box;transition:none!important;animation:none!important}
+*,*::before,*::after{box-sizing:border-box}
+:root{--ease:cubic-bezier(.22,.61,.36,1);--quick:160ms;--calm:280ms}
+a,button,.card,.card img,.strip img,.masonry img{transition:background-color var(--quick) var(--ease),color var(--quick) var(--ease),border-color var(--quick) var(--ease),box-shadow var(--calm) var(--ease),translate var(--calm) var(--ease),filter var(--quick) var(--ease),opacity var(--quick) var(--ease)}
+@keyframes pageIn{from{opacity:0;translate:0 10px}to{opacity:1;translate:0 0}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes panelIn{from{opacity:0;translate:6px 0}to{opacity:1;translate:0 0}}
+[data-page].enter{animation:pageIn var(--calm) var(--ease) both}
+[data-page].leave{opacity:0;transition:opacity 120ms ease}
+.about-panel.swap{animation:panelIn 240ms var(--ease) both}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
 [hidden]{display:none!important}
 html{scroll-behavior:auto;background:var(--paper)}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.55;overflow-x:hidden}
@@ -76,12 +84,12 @@ button{font:inherit;color:inherit;cursor:pointer}
 
 /* About */
 .about .inner{padding-block:50px 40px}
-.about-title{width:min(520px,80%);height:auto}
-.about-row{display:grid;grid-template-columns:minmax(0,1fr) 242px;gap:40px;align-items:start;margin-top:-10px;padding-left:33px;padding-right:38px}
+.about-title{width:min(330px,72%);height:auto;margin-left:clamp(0px,5vw,64px)}
+.about-row{display:grid;grid-template-columns:minmax(0,1fr) 242px;gap:40px;align-items:start;margin-top:28px;padding-left:33px;padding-right:38px}
 .about-card{display:grid;grid-template-columns:minmax(0,340px) minmax(0,1fr);gap:28px;align-items:center;min-width:0}
 .flower{position:relative;aspect-ratio:750/736;width:100%;max-width:340px}
 .flower img{width:100%;height:100%}
-.petal{position:absolute;transform:translate(-50%,-50%);width:34%;height:30%;border:0;padding:0;border-radius:50%;background:none}
+.petal{transition:background var(--calm) var(--ease);position:absolute;transform:translate(-50%,-50%);width:34%;height:30%;border:0;padding:0;border-radius:50%;background:none}
 .petal:hover{background:radial-gradient(closest-side,rgba(255,255,255,.22),transparent)}
 .petal[aria-selected="true"]{background:radial-gradient(closest-side,rgba(255,255,255,.38),rgba(255,255,255,.08) 70%,transparent)}
 .about-panel{color:var(--cocoa);min-width:0}
@@ -121,8 +129,11 @@ button{font:inherit;color:inherit;cursor:pointer}
 .acc{max-width:462px;margin:26px auto 0;display:flex;flex-direction:column;gap:12px}
 .acc-q{width:100%;display:flex;justify-content:space-between;align-items:center;gap:16px;background:var(--blush);border:0;border-radius:10px;min-height:56px;padding:12px 14px 12px 14px;text-align:left;font-size:15px;font-weight:400}
 .acc-q:hover{background:var(--blush-deep)}
-.chev{flex:0 0 auto;width:12px;height:12px;border-right:2px solid var(--cocoa);border-bottom:2px solid var(--cocoa);rotate:45deg;translate:0 -3px}
+.chev{transition:rotate var(--calm) var(--ease),translate var(--calm) var(--ease);flex:0 0 auto;width:12px;height:12px;border-right:2px solid var(--cocoa);border-bottom:2px solid var(--cocoa);rotate:45deg;translate:0 -3px}
 .acc-q[aria-expanded="true"] .chev{rotate:-135deg;translate:0 3px}
+.acc-wrap{display:grid;grid-template-rows:0fr;opacity:0;transition:grid-template-rows var(--calm) var(--ease),opacity var(--calm) var(--ease)}
+.acc-wrap.open{grid-template-rows:1fr;opacity:1}
+.acc-wrap>div{overflow:hidden;min-height:0}
 .acc-a{background:var(--blush-soft);border-radius:10px;margin-top:8px;padding:16px 21px;font-weight:200;font-size:15px}
 .acc-a p{margin:0}
 
@@ -159,7 +170,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 .blog p{margin:16px auto 0;max-width:52ch;font-weight:300}
 
 /* Lightbox */
-.lightbox{position:fixed;inset:0;z-index:100;background:rgba(58,31,13,.82);display:grid;place-items:center;padding:max(24px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(24px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.lightbox{opacity:0;transition:opacity 200ms var(--ease);position:fixed;inset:0;z-index:100;background:rgba(58,31,13,.82);display:grid;place-items:center;padding:max(24px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(24px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
 .lightbox img{max-height:82vh;width:auto;max-width:100%;border-radius:10px}
 .lightbox p{color:#fff;text-align:center;margin:12px 0 0;font-weight:300}
 .lb-close{position:absolute;top:max(14px,env(safe-area-inset-top,0px));right:max(14px,env(safe-area-inset-right,0px));width:44px;height:44px;border-radius:50%;border:0;background:var(--blush);color:var(--cocoa);font-size:24px;line-height:1}
@@ -242,7 +253,7 @@ button{font:inherit;color:inherit;cursor:pointer}
     <img class="art" src="img/home-about-bg.webp" alt="" width="1200" height="610">
     <div class="inner">
       <h2 class="sr">About me</h2>
-      <img class="about-title" src="img/about-title.webp" width="520" height="140" alt="About Me">
+      <img class="about-title" src="img/about-title.webp" width="330" height="87" alt="About Me">
       <div class="about-row">
         <div class="about-card">
           <div class="flower" role="tablist" aria-label="About Chloe">
@@ -439,20 +450,21 @@ button{font:inherit;color:inherit;cursor:pointer}
     return '<a href="#'+x[2]+'" data-go="'+x[2]+'" aria-label="'+esc(x[3])+'"><img src="img/'+x[0]+'.webp" style="--h:'+x[1]+'px" alt="'+esc(x[3])+'"></a>';
   }).join("");
   $$("[data-strip]").forEach(function(b){
-    b.addEventListener("click",function(){var s=$("#strip");s.scrollBy({left:Number(b.dataset.strip)*s.clientWidth*0.7,behavior:"instant"})});
+    b.addEventListener("click",function(){var s=$("#strip");s.scrollBy({left:Number(b.dataset.strip)*s.clientWidth*0.7,behavior:smooth()})});
   });
 
   // FAQ accordion
   $("#faq").innerHTML = FAQ.map(function(f,i){
-    return '<div><button class="acc-q" type="button" id="q'+i+'" aria-expanded="false" aria-controls="a'+i+'"><span>'+esc(f[0])+'</span><i class="chev" aria-hidden="true"></i></button><div class="acc-a" id="a'+i+'" role="region" aria-labelledby="q'+i+'" hidden><p>'+esc(f[1])+'</p></div></div>';
+    return '<div><button class="acc-q" type="button" id="q'+i+'" aria-expanded="false" aria-controls="a'+i+'"><span>'+esc(f[0])+'</span><i class="chev" aria-hidden="true"></i></button><div class="acc-wrap" id="a'+i+'" role="region" aria-labelledby="q'+i+'" aria-hidden="true" inert><div><div class="acc-a"><p>'+esc(f[1])+'</p></div></div></div></div>';
   }).join("");
   $$(".acc-q").forEach(function(b){
-    b.addEventListener("click",function(){var open=b.getAttribute("aria-expanded")==="true";b.setAttribute("aria-expanded",String(!open));$("#"+b.getAttribute("aria-controls")).hidden=open});
+    b.addEventListener("click",function(){var open=b.getAttribute("aria-expanded")==="true";b.setAttribute("aria-expanded",String(!open));var w=$("#"+b.getAttribute("aria-controls"));w.classList.toggle("open",!open);w.setAttribute("aria-hidden",String(open));w.inert=open});
   });
 
   // About tabs
   function showTab(key){
     var t = ABOUT[key];
+    var ap=$("#about-panel"); ap.classList.remove("swap"); void ap.offsetWidth; ap.classList.add("swap");
     $("#about-panel").innerHTML = '<h3>'+t[0]+'</h3>'+t[1]+(key==="intro"?'<p class="about-hint">Tap a petal on the flower to read more.</p>':'');
     $("#about-panel").setAttribute("aria-labelledby","t-"+key);
     $$(".petal").forEach(function(p){p.setAttribute("aria-selected",String(p.dataset.tab===key))});
@@ -488,10 +500,10 @@ button{font:inherit;color:inherit;cursor:pointer}
     b.addEventListener("click",function(){
       lastFocus = b; var img = b.querySelector("img");
       $("#lb-img").src = img.src; $("#lb-img").alt = img.alt; $("#lb-cap").textContent = img.alt;
-      lb.hidden = false; $(".lb-close").focus();
+      lb.hidden = false; requestAnimationFrame(function(){requestAnimationFrame(function(){lb.style.opacity=1})}); $(".lb-close").focus();
     });
   });
-  function closeLb(){lb.hidden = true; if(lastFocus) lastFocus.focus()}
+  function closeLb(){lb.style.opacity=0; setTimeout(function(){lb.hidden = true},200); if(lastFocus) lastFocus.focus()}
   $(".lb-close").addEventListener("click",closeLb);
   lb.addEventListener("click",function(e){if(e.target===lb) closeLb()});
   document.addEventListener("keydown",function(e){if(e.key==="Escape" && !lb.hidden) closeLb()});
@@ -520,12 +532,21 @@ button{font:inherit;color:inherit;cursor:pointer}
 
   // Instant router: swap views with no animation and jump to top
   var VIEWS = ["home","works","playground"];
+  function smooth(){return matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"}
+  var current = null, leaving = null;
   function route(key, push){
+    var cur = current;
+    if (cur && !cur.hidden && !matchMedia("(prefers-reduced-motion: reduce)").matches){
+      cur.classList.add("leave"); clearTimeout(leaving);
+      leaving = setTimeout(function(){cur.classList.remove("leave"); show(key, push)}, 120);
+    } else show(key, push);
+  }
+  function show(key, push){
     key = (key||"home").replace(/^#/,"");
     if (key==="about") key = "home";
     var proj = PROJECTS.filter(function(p){return p.id===key})[0];
     if (!proj && VIEWS.indexOf(key)<0) key = "home";
-    $$("[data-page]").forEach(function(s){s.hidden = true});
+    $$("[data-page]").forEach(function(s){s.hidden = true; s.classList.remove("enter","leave")});
     if (proj){ renderCase(proj); $('[data-page="case"]').hidden = false; document.title = proj.name+" · Chloe Phan"; }
     else { $('[data-page="'+key+'"]').hidden = false; document.title = key==="home" ? "Chloe Phan Portfolio" : key.charAt(0).toUpperCase()+key.slice(1)+" · Chloe Phan"; }
     $$(".nav-link").forEach(function(a){
@@ -534,16 +555,18 @@ button{font:inherit;color:inherit;cursor:pointer}
     });
     if (push){ try{ history.pushState({k:key},"","#"+key) }catch(e){} }
     window.scrollTo({top:0,left:0,behavior:"instant"});
+    current = proj ? $('[data-page="case"]') : $('[data-page="'+key+'"]');
+    void current.offsetWidth; current.classList.add("enter");
   }
   document.addEventListener("click",function(e){
     var a = e.target.closest("[data-go]");
     if (a){ e.preventDefault(); route(a.dataset.go,true); return; }
     var s = e.target.closest("[data-scroll]");
-    if (s){ e.preventDefault(); var t=document.getElementById(s.dataset.scroll); var y=t.getBoundingClientRect().top+scrollY-$(".top").offsetHeight; window.scrollTo({top:y,behavior:"instant"}); }
+    if (s){ e.preventDefault(); var t=document.getElementById(s.dataset.scroll); var y=t.getBoundingClientRect().top+scrollY-$(".top").offsetHeight; window.scrollTo({top:y,behavior:smooth()}); }
   });
   window.addEventListener("popstate",function(e){route((e.state&&e.state.k)||location.hash,false)});
   window.addEventListener("hashchange",function(){route(location.hash,false)});
-  route(location.hash,false);
+  show(location.hash,false);
 
   // Warm every image so switching pages never waits on a download
   var warm = ["ms-hero","vr-hero","sm-hero","hk-hero","title-medtrack","title-verra","title-matcha","title-hookd"];
