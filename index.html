@@ -1,0 +1,557 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta property="og:title" content="Chloe Phan | Product & Visual Designer">
+<meta property="og:description" content="Product and visual designer studying Informatics and Urban Studies at UT Austin.">
+<meta property="og:image" content="img/home-hero.webp">
+<title>Chloe Phan Portfolio</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Chloe Phan, product and visual designer studying Informatics and Urban Studies at UT Austin.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Beau+Rivage&family=Josefin+Sans:wght@600;700&family=Sarabun:wght@200;300;400;600;800&display=swap">
+<link rel="preload" as="image" href="img/home-hero.webp" fetchpriority="high">
+<style>
+/* Layout: Chloe's 1200px Figma frame, kept as a centered stage; her artwork sits behind live text in each band. */
+/* Single light look on purpose: the artwork is painted on white, so the page commits to it in every theme. */
+:root{
+  --paper:#ffffff;
+  --blush:#fddfe7;      /* header, buttons, accordion */
+  --blush-soft:#fee9ef; /* open answers */
+  --blush-deep:#f9c6d4; /* hover / pressed */
+  --rose:#ee88a3;
+  --cocoa:#3a1f0d;      /* script headings, body copy */
+  --ink:#000000;
+  --cream:#fef9ca;      /* project cards */
+  --leaf:#99c987;       /* role tags */
+  --leaf-ink:#21503d;
+  --f-script:"Beau Rivage","Snell Roundhand","Brush Script MT",cursive;
+  --f-display:"Josefin Sans","Futura","Century Gothic",system-ui,sans-serif;
+  --f-body:"Sarabun","Helvetica Neue",Arial,sans-serif;
+  --stage:1200px;
+  color-scheme:light;
+}
+*,*::before,*::after{box-sizing:border-box;transition:none!important;animation:none!important}
+[hidden]{display:none!important}
+html{scroll-behavior:auto;background:var(--paper)}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.55;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--blush)}
+img{max-width:100%;display:block}
+a{color:inherit}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--cocoa);outline-offset:3px;border-radius:6px}
+.sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.gutter{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+
+/* Header */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--blush)}
+.top nav{max-width:var(--stage);margin:0 auto;height:76px;display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;justify-items:center;gap:clamp(12px,4vw,48px)}
+.top a{text-decoration:none}
+.nav-link{font-weight:200;font-size:20px;letter-spacing:.01em;padding:6px 2px;border-bottom:1.5px solid transparent}
+.nav-link:first-child{justify-self:end}
+.nav-link:last-child{justify-self:start}
+.top nav>*{text-align:center}
+.nav-link:hover,.nav-link[aria-current="page"]{border-bottom-color:var(--cocoa)}
+.logo{font-family:var(--f-display);font-weight:700;font-size:23px;color:var(--cocoa);text-transform:uppercase;letter-spacing:.06em;white-space:nowrap}
+
+/* Bands: decorative art behind content */
+.band{position:relative;max-width:var(--stage);margin:0 auto}
+.band>.art{position:absolute;top:0;left:0;width:100%;height:auto;pointer-events:none;user-select:none;z-index:0}
+.band>.inner{position:relative;z-index:1}
+@media (min-width:1240px){
+  .band>.art,.hero-img{-webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)}
+}
+.center{text-align:center}
+.script{font-family:var(--f-script);font-weight:400;color:var(--cocoa);line-height:1.1;margin:0;text-wrap:balance}
+.lede{font-weight:200;font-size:20px;margin:6px auto 0;max-width:42ch;text-wrap:balance}
+.icon{margin:0 auto 6px;height:auto}
+
+/* Hero */
+.hero{max-width:var(--stage);margin:0 auto}
+.hero-img{width:100%;height:auto}
+.see-more{display:block;width:max-content;margin:-70px auto 0;position:relative;font-weight:300;font-size:20px;text-decoration:none;padding:6px 10px}
+.see-more:hover{text-decoration:underline}
+
+/* About */
+.about .inner{padding-block:50px 40px}
+.about-title{width:min(520px,80%);height:auto}
+.about-row{display:grid;grid-template-columns:minmax(0,1fr) 242px;gap:40px;align-items:start;margin-top:-10px;padding-left:33px;padding-right:38px}
+.about-card{display:grid;grid-template-columns:minmax(0,340px) minmax(0,1fr);gap:28px;align-items:center;min-width:0}
+.flower{position:relative;aspect-ratio:750/736;width:100%;max-width:340px}
+.flower img{width:100%;height:100%}
+.petal{position:absolute;transform:translate(-50%,-50%);width:34%;height:30%;border:0;padding:0;border-radius:50%;background:none}
+.petal:hover{background:radial-gradient(closest-side,rgba(255,255,255,.22),transparent)}
+.petal[aria-selected="true"]{background:radial-gradient(closest-side,rgba(255,255,255,.38),rgba(255,255,255,.08) 70%,transparent)}
+.about-panel{color:var(--cocoa);min-width:0}
+.about-panel h3{font-weight:800;font-size:16px;margin:0 0 10px}
+.about-panel p{margin:0 0 10px;font-size:16px}
+.about-panel ul{margin:0;padding-left:18px}
+.about-panel li{margin-bottom:6px}
+.about-hint{font-size:13px;font-weight:300;color:var(--cocoa);opacity:.75;margin-top:8px}
+.photo{width:242px;height:auto}
+
+/* Sneak peek */
+.peek .inner{padding-block:86px 60px}
+.peek h2{font-size:clamp(26px,3vw,30px)}
+.strip-wrap{position:relative;margin-top:clamp(40px,14vw,190px)}
+.strip{display:flex;gap:28px;align-items:center;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:12px 45px 18px}
+.strip::-webkit-scrollbar{display:none}
+.strip a{flex:0 0 auto;scroll-snap-align:start;border-radius:12px}
+.strip img{height:var(--h);width:auto}
+.strip a:hover img{filter:brightness(1.04)}
+.arrow{position:absolute;top:50%;translate:0 -50%;width:44px;height:44px;border-radius:50%;border:0;background:var(--blush);color:var(--cocoa);font-size:22px;line-height:1;display:grid;place-items:center;z-index:2;box-shadow:0 2px 6px rgba(58,31,13,.15)}
+.arrow:hover{background:var(--blush-deep)}
+.arrow.prev{left:4px}.arrow.next{right:4px}
+
+/* Design in Action / cards */
+.dia .inner{padding-block:28px 80px}
+.dia h2,.faq h2{font-size:clamp(48px,6vw,70px)}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,432px));justify-content:center;gap:47px 50px;margin-top:48px}
+.card{display:flex;flex-direction:column;background:var(--cream);border-radius:50px;padding:28px 30px 26px;text-decoration:none;color:var(--ink);box-shadow:0 4px 4px rgba(0,0,0,.25);min-height:480px}
+.card:hover{box-shadow:0 8px 18px rgba(58,31,13,.22);translate:0 -3px}
+.card img{width:100%;aspect-ratio:350/237;object-fit:cover;border-radius:6px}
+.card h3{font-family:var(--f-display);font-weight:700;font-size:25px;text-transform:uppercase;letter-spacing:.02em;margin:20px 0 6px;line-height:1.15}
+.card p{font-weight:200;font-size:16px;margin:0 0 16px}
+.tag{display:inline-block;align-self:flex-start;margin-top:auto;background:var(--leaf);color:var(--leaf-ink);font-size:12px;font-weight:400;padding:8px 14px;border-radius:16px;white-space:nowrap}
+
+/* FAQ */
+.faq .inner{padding-block:36px 80px}
+.acc{max-width:462px;margin:26px auto 0;display:flex;flex-direction:column;gap:12px}
+.acc-q{width:100%;display:flex;justify-content:space-between;align-items:center;gap:16px;background:var(--blush);border:0;border-radius:10px;min-height:56px;padding:12px 14px 12px 14px;text-align:left;font-size:15px;font-weight:400}
+.acc-q:hover{background:var(--blush-deep)}
+.chev{flex:0 0 auto;width:12px;height:12px;border-right:2px solid var(--cocoa);border-bottom:2px solid var(--cocoa);rotate:45deg;translate:0 -3px}
+.acc-q[aria-expanded="true"] .chev{rotate:-135deg;translate:0 3px}
+.acc-a{background:var(--blush-soft);border-radius:10px;margin-top:8px;padding:16px 21px;font-weight:200;font-size:15px}
+.acc-a p{margin:0}
+
+/* Connect + footer */
+.connect .inner{padding-block:40px 64px}
+.connect h2{font-size:clamp(46px,5.6vw,66px)}
+.links{max-width:460px;margin:150px auto 0;display:flex;flex-direction:column;gap:20px}
+.link-row{display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:56px;padding:10px 21px;background:var(--blush);border:0;border-radius:10px;text-decoration:none;font-weight:200;font-size:15px;color:var(--ink);text-align:left;width:100%}
+.link-row:hover{background:var(--blush-deep)}
+.link-row b{font-weight:400}
+.link-row span:last-child{min-width:0;overflow-wrap:anywhere;text-align:right}
+.copy-note{font-size:13px;font-weight:300;color:var(--cocoa);text-align:center;margin:-8px 0 0;min-height:1.4em}
+.foot{text-align:center;margin-top:clamp(140px,26vw,320px)}
+.foot .logo{display:block}
+.foot p{margin:8px 0 0;font-weight:200;font-size:20px;color:var(--cocoa)}
+
+/* Works page */
+.page-title{width:100%;height:auto}
+.works-sub{margin-top:-60px}
+.works-cards .inner{padding-block:40px 60px}
+.works-cards .cards{margin-top:0}
+
+/* Playground */
+.pg-sub{margin-top:-80px;position:relative}
+.masonry{columns:3 300px;column-gap:24px;max-width:1100px;margin:56px auto 0}
+.masonry figure{break-inside:avoid;margin:0 0 24px}
+.masonry button{display:block;padding:0;border:0;background:none;width:100%;border-radius:10px;overflow:hidden}
+.masonry img{width:100%;height:auto}
+.masonry button:hover img{filter:brightness(1.05)}
+.masonry figcaption{font-size:14px;font-weight:300;color:var(--cocoa);margin-top:8px}
+.blog .inner{padding-block:60px 40px}
+.blog h2{font-size:clamp(40px,5vw,54px)}
+.blog img{width:min(815px,100%);margin:28px auto 0;border-radius:24px}
+.blog p{margin:16px auto 0;max-width:52ch;font-weight:300}
+
+/* Lightbox */
+.lightbox{position:fixed;inset:0;z-index:100;background:rgba(58,31,13,.82);display:grid;place-items:center;padding:max(24px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(24px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.lightbox img{max-height:82vh;width:auto;max-width:100%;border-radius:10px}
+.lightbox p{color:#fff;text-align:center;margin:12px 0 0;font-weight:300}
+.lb-close{position:absolute;top:max(14px,env(safe-area-inset-top,0px));right:max(14px,env(safe-area-inset-right,0px));width:44px;height:44px;border-radius:50%;border:0;background:var(--blush);color:var(--cocoa);font-size:24px;line-height:1}
+
+/* Case study */
+.case .inner{padding-block:20px 60px}
+.case-title{width:100%;height:auto;margin-top:clamp(20px,6vw,90px)}
+.case .tag{display:table;margin:6px auto 0}
+.case-intro{font-weight:200;font-size:20px;max-width:707px;margin:22px auto 0;text-align:center;text-wrap:pretty}
+.case-hero{width:min(824px,100%);margin:40px auto 0}
+.overview{max-width:935px;margin:80px auto 0;font-size:20px;font-weight:200}
+.overview h2{font-family:var(--f-script);font-weight:400;font-size:clamp(36px,4.4vw,45px);color:var(--ink);margin:0 0 18px;line-height:1.1}
+.overview h3{font-family:var(--f-script);font-weight:400;font-size:clamp(28px,3.4vw,34px);margin:34px 0 4px;line-height:1.15}
+.meta{display:grid;grid-template-columns:max-content 1fr;gap:4px 14px;margin:0}
+.meta dt{font-weight:400}
+.meta dd{margin:0}
+.overview p{margin:0;max-width:62ch}
+.overview ul{margin:0;padding-left:22px}
+.gallery{display:flex;flex-direction:column;gap:56px;align-items:center;margin-top:72px}
+.gallery img{width:min(952px,100%);height:auto}
+.gallery img.wide{width:min(1089px,100%)}
+.site-btn{display:flex;justify-content:center;align-items:center;max-width:460px;min-height:56px;margin:56px auto 0;background:var(--blush);border-radius:10px;text-decoration:none;font-size:15px}
+.site-btn:hover{background:var(--blush-deep)}
+.case-nav{display:flex;justify-content:space-between;align-items:center;gap:20px;max-width:1000px;margin:90px auto 0;flex-wrap:wrap}
+.case-nav a{display:flex;align-items:center;gap:16px;text-decoration:none;font-size:clamp(20px,2.4vw,30px);font-weight:400;padding:8px 4px}
+.case-nav a:hover span{text-decoration:underline;text-underline-offset:5px}
+.case-nav .ar{font-size:1.4em;line-height:1}
+
+/* Responsive */
+@media (max-width:980px){
+  .about-row{grid-template-columns:1fr;padding:0;justify-items:center}
+  .about-card{grid-template-columns:1fr;justify-items:center;max-width:520px}
+  .photo{width:200px}
+}
+@media (max-width:760px){
+  .top nav{height:60px;gap:12px}
+  .nav-link{font-size:16px}
+  .logo{font-size:18px}
+  .see-more{margin-top:-30px;font-size:17px}
+  .cards{grid-template-columns:minmax(0,432px)}
+  .card{min-height:0;border-radius:36px;padding:22px 22px 22px}
+  .strip{gap:18px;padding-inline:8px}
+  .strip img{height:calc(var(--h) * .72)}
+  .arrow{display:none}
+  .links{margin-top:90px}
+  .works-sub,.pg-sub{margin-top:-24px}
+  .overview{font-size:18px}
+  .meta{grid-template-columns:1fr;gap:0}
+  .meta dd{margin-bottom:8px}
+  .lede,.case-intro{font-size:18px}
+}
+@media (max-width:420px){
+  .logo{font-size:16px;letter-spacing:.04em}
+  .nav-link{font-size:15px}
+}
+</style>
+</head>
+<body>
+
+
+<header class="top gutter">
+  <nav aria-label="Main">
+    <a class="nav-link" href="#works" data-go="works">Works</a>
+    <a class="logo" href="#home" data-go="home">Chloe Phan</a>
+    <a class="nav-link" href="#playground" data-go="playground">Playground</a>
+  </nav>
+</header>
+
+<main id="app">
+
+<!-- HOME -->
+<section data-page="home">
+  <h1 class="sr">Chloe Phan, Product &amp; Visual Designer</h1>
+  <div class="hero">
+    <img class="hero-img" src="img/home-hero.webp" width="1200" height="1195" alt="Hand-drawn lotus, tulip, and lily pad artwork around the words This is Chloe, Product and Visual Designer, with two of Chloe's art pieces.">
+    <a class="see-more" href="#about" data-scroll="about">See more below!</a>
+  </div>
+
+  <div class="band about gutter" id="about">
+    <img class="art" src="img/home-about-bg.webp" alt="" width="1200" height="610">
+    <div class="inner">
+      <h2 class="sr">About me</h2>
+      <img class="about-title" src="img/about-title.webp" width="520" height="140" alt="About Me">
+      <div class="about-row">
+        <div class="about-card">
+          <div class="flower" role="tablist" aria-label="About Chloe">
+            <img src="img/flower.webp" width="375" height="368" alt="">
+            <button class="petal" role="tab" id="t-intro" aria-controls="about-panel" aria-selected="true" data-tab="intro" style="left:50.7%;top:18.3%"><span class="sr">Intro</span></button>
+            <button class="petal" role="tab" id="t-education" aria-controls="about-panel" aria-selected="false" data-tab="education" style="left:78.7%;top:43.2%"><span class="sr">Education</span></button>
+            <button class="petal" role="tab" id="t-experience" aria-controls="about-panel" aria-selected="false" data-tab="experience" style="left:68.7%;top:77.4%"><span class="sr">Experience</span></button>
+            <button class="petal" role="tab" id="t-skills" aria-controls="about-panel" aria-selected="false" data-tab="skills" style="left:30.7%;top:77.4%"><span class="sr">Skills</span></button>
+            <button class="petal" role="tab" id="t-hobbies" aria-controls="about-panel" aria-selected="false" data-tab="hobbies" style="left:22.3%;top:43.8%"><span class="sr">Hobbies</span></button>
+          </div>
+          <div class="about-panel" id="about-panel" role="tabpanel" aria-labelledby="t-intro" aria-live="polite"></div>
+        </div>
+        <img class="photo" src="img/photo.webp" width="242" height="370" alt="Portrait of Chloe Phan in a black blazer">
+      </div>
+    </div>
+  </div>
+
+  <div class="band peek gutter">
+    <img class="art" src="img/home-peek-bg.webp" alt="" width="1200" height="930">
+    <div class="inner center">
+      <img class="icon" src="img/icon-peek.webp" width="75" height="65" alt="">
+      <h2 class="script">Sneak peek of my works</h2>
+      <div class="strip-wrap">
+        <button class="arrow prev" type="button" aria-label="Scroll left" data-strip="-1">&#8249;</button>
+        <div class="strip" id="strip" tabindex="0" aria-label="Project previews"></div>
+        <button class="arrow next" type="button" aria-label="Scroll right" data-strip="1">&#8250;</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="band dia gutter">
+    <img class="art" src="img/home-dia-bg.webp" alt="" width="1200" height="1280">
+    <div class="inner center">
+      <h2 class="script">Design in Action</h2>
+      <p class="lede">Building for accessibility, efficiency, and equity</p>
+      <div class="cards" data-cards></div>
+    </div>
+  </div>
+
+  <div class="band faq gutter">
+    <img class="art" src="img/home-faq-bg.webp" alt="" width="1200" height="1040">
+    <div class="inner center">
+      <img class="icon" src="img/icon-faq.webp" width="103" height="81" alt="">
+      <h2 class="script">FAQs</h2>
+      <p class="lede">Got questions? I&rsquo;ve got answers!</p>
+      <div class="acc" id="faq"></div>
+    </div>
+  </div>
+
+  <div data-connect></div>
+</section>
+
+<!-- WORKS -->
+<section data-page="works" hidden>
+  <div class="band gutter">
+    <h1 class="sr">Works</h1>
+    <img class="page-title" src="img/title-works.webp" width="1200" height="375" alt="Works">
+    <p class="lede center works-sub">Building for accessibility, efficiency, and equity</p>
+  </div>
+  <div class="band works-cards gutter">
+    <img class="art" src="img/works-cards-bg.webp" alt="" width="1200" height="1290">
+    <div class="inner"><div class="cards" data-cards></div></div>
+  </div>
+  <div data-connect data-bg="works"></div>
+</section>
+
+<!-- PLAYGROUND -->
+<section data-page="playground" hidden>
+  <div class="band gutter">
+    <h1 class="sr">Playground</h1>
+    <img class="page-title" src="img/title-playground.webp" width="1200" height="425" alt="Playground">
+    <p class="lede center pg-sub">Creative work, graphic design, and art beyond my case studies</p>
+    <div class="masonry" id="masonry"></div>
+  </div>
+  <div class="band blog gutter">
+    <img class="art" src="img/pg-blog-bg.webp" alt="" width="1200" height="900">
+    <div class="inner center">
+      <h2 class="script">My blog</h2>
+      <img src="img/pg-blog.webp" width="815" height="453" alt="Chloe's Blog header with pink floral wallpaper, lace, a deer, an apple, and photos of Chloe">
+    </div>
+  </div>
+  <div data-connect data-bg="pg"></div>
+</section>
+
+<!-- CASE STUDY (rendered from data) -->
+<section data-page="case" hidden><div class="band case gutter"><div class="inner" id="case"></div></div></section>
+
+</main>
+
+<div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Artwork preview">
+  <button class="lb-close" type="button" aria-label="Close preview">&times;</button>
+  <figure style="margin:0"><img id="lb-img" alt=""><p id="lb-cap"></p></figure>
+</div>
+
+<template id="connect-tpl">
+  <div class="band connect gutter">
+    <img class="art" src="img/home-connect-bg.webp" alt="" width="1200" height="1127">
+    <div class="inner center">
+      <img class="icon" src="img/icon-connect.webp" width="130" height="96" alt="">
+      <h2 class="script">Connect with me!</h2>
+      <div class="links">
+        <button class="link-row" type="button" data-copy="chloewphan@gmail.com"><b>Email</b><span>chloewphan@gmail.com</span></button>
+        <p class="copy-note" aria-live="polite"></p>
+        <a class="link-row" href="https://www.linkedin.com/in/chloe-phan-" target="_blank" rel="noopener"><b>LinkedIn</b><span>linkedin.com/in/chloe-phan-</span></a>
+      </div>
+      <div class="foot">
+        <span class="logo">Chloe Phan</span>
+        <p>Thanks for reading!</p>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+(function(){
+  // Leave empty to hide the button; paste the live Hook'd Closet URL here to show it.
+  var HOOKD_URL = "https://www.hookdmag.com/";
+
+  var PROJECTS = [
+    {id:"medtrack", name:"MedTrack", tag:"Product Design", card:"card-medtrack",
+     blurb:"Pre-med app designed for students struggling with guidance during undergrad",
+     intro:"Pre-med students lacked a centralized tool to navigate their path to med school, so I designed MedTrack: a platform featuring an AI chat advisor, admissions chance calculator, application organizer, and timeline tracker to guide students through every step.",
+     meta:[["Organization","Texas Convergent"],["Industry","Informatics, Technology"],["Timeline","3.5 months (2026)"],["My Role","Product Designer"]],
+     sections:[["The Challenge","Pre-med students lacked a centralized tool to navigate their path to med school, from getting advice to tracking applications and deadlines."],
+               ["What I Designed","MedTrack, a single platform that guides students through every step of the pre-med journey."],
+               ["Key Features",["AI chat advisor for on-demand guidance","Admissions chance calculator","Application organizer","Timeline tracker"]],
+               ["My Process","I started with user and competitor research to find the gaps, sketched lo-fi wireframes around the features that mattered most, then refined them into hi-fi designs through iteration and feedback."]],
+     gallery:[["ms-g1","Opportunities page and chance calculator on two laptops"],["ms-g2","MedTrack dashboard home with sidebar navigation"],["ms-g3","Welcome dashboard with acceptance probability and Texas schools list"],["ms-g4","MedTrack sign-up screen on a laptop",true]]},
+    {id:"verra", name:"Verra", tag:"UX/UI Design", card:"card-verra",
+     blurb:"Mockup of skincare brand promoting simple, soothing ingredients",
+     intro:"Verra is a mockup skincare brand inspired by Korean serum products, created to practice UX/UI design. It gave me space to experiment with branding and apply my skills within a specific aesthetic.",
+     meta:[["Industry","Informatics, Technology"],["Timeline","1 week (2026)"],["My Role","UX/UI Designer"],["Type","Personal practice project"]],
+     sections:[["The Goal","Create a mockup skincare brand inspired by Korean serum products to practice UX/UI design and experiment with branding in a specific aesthetic."],
+               ["What I Designed","A mobile shopping experience for Verra, built around simple, soothing, plant-based ingredients."],
+               ["Key Screens",["Product landing page with a clear Buy Now action","Product detail page for the Gentle Green Tea Serum with size selection and Add to Bag","Ingredient-focused visuals that carry the brand aesthetic"]]],
+     gallery:[["vr-g1","Three Verra mobile screens: product detail, landing, and Buy Now"],["vr-g2","Verra app on a phone resting on a wooden desk"],["vr-g3","Verra ingredients screen with active enzymes, algae oil, sensityl, and hydrintense"]]},
+    {id:"matcha", name:"Strawberry Matcha", tag:"UX/UI Design", card:"card-matcha",
+     blurb:"Strawberry matcha branding mockup, featuring a buy/purchase flow",
+     intro:"A branding and UX/UI practice project for a food and beverage product with a shopping system, inspired by a strawberry matcha I made.",
+     meta:[["Industry","Informatics, Technology"],["Timeline","2 weeks (2026)"],["My Role","UX/UI Designer"],["Type","Personal practice project"]],
+     sections:[["The Goal","A branding and UX/UI practice project for a food and beverage product, inspired by a strawberry matcha I made."],
+               ["What I Designed","A brand identity and website with a full shopping system."],
+               ["Key Screens",["Hero page showcasing the signature Strawberry Matcha","Fruit Flavored Matcha menu with Blueberry, Raspberry, and Guava options","Buy and purchase flow"]]],
+     gallery:[["sm-g1","Fruit Flavored Matcha menu on a laptop"],["sm-g2","How it's made hero page with strawberry matcha cups"],["sm-g3","Build your matcha order page on a laptop on a desk"],["sm-g4","Fruit Flavored Matcha menu with blueberry, raspberry, and guava",true]]},
+    {id:"hookd", name:"Hook’d Closet", tag:"UX/UI Design", card:"card-hookd",
+     blurb:"Designed a closet feature for Hook'd Magazine, allowing readers to shop items featured directly from the issue.",
+     intro:"Hook'd Magazine needed a centralized way for readers to shop clothing straight from the issue, as well as view each outfit on its own. I designed a closet system that lets users browse and buy featured pieces directly.",
+     meta:[["Organization","Hook’d Magazine"],["Industry","Informatics, Technology"],["Timeline","5 months, built in phases (2026)"],["My Role","Web Designer"]],
+     sections:[["The Challenge","Hook'd Magazine needed a centralized way for readers to shop clothing straight from the issue, and to view each outfit on its own."],
+               ["What I Designed","A closet system that lets readers browse and buy featured pieces directly."],
+               ["Key Features",["Browse by category, like Tops/Dresses","Filter by clothing size","Individual item pages","Add to cart and shopping cart"]]],
+     gallery:[["hk-g1","Tops/Dresses closet page on a laptop on a rattan chair"],["hk-g2","Closet and Jackets category pages with filters"],["hk-g3","Hook'd shopping cart on a laptop"]], site:true}
+  ];
+
+  var PEEK = [
+    ["peek-1",333,"medtrack","MedTrack sign-up screen"],["peek-2",284,"verra","Verra ingredients screen"],["peek-3a",231,"verra","Verra landing screen"],["peek-3b",242,"verra","Verra product detail screen"],
+    ["peek-4",272,"playground","Off the Record collage"],["peek-5",238,"matcha","Fruit Flavored Matcha menu"],["peek-6",284,"playground","Green Infrastructure collage"],["peek-7",289,"playground","TWICE collage"],["peek-8",221,"playground","Oil painting of deer"]
+  ];
+
+  var ART = [
+    ["pg-1","Strawberry Matcha website"],["pg-2","TWICE collage"],["pg-3","Verra landing screen"],["pg-4","Green Infrastructure collage"],
+    ["pg-5","Oil painting of deer"],["pg-6","MedTrack mockups"],["pg-7","Summer Rush ’26 graphic, Gamma Chapter"],["pg-8","Hook’d Magazine contributors spread with my artwork"],
+    ["pg-9","Off the Record collage"],["pg-10","Becoming a Longhorn, creative project for LA 101"],["pg-11","Oil painting of a young cowboy on horseback"],["pg-12","Hand-painted nail sets"]
+  ];
+
+  var FAQ = [
+    ["What is your typical design process?","I begin with user and competitor research, understanding what works and where the gap is. From there, I sketch lo-fis around the features that matter most to users, then refine into hi-fis through iteration and feedback until the design lands."],
+    ["How long does a project usually take?","It depends on scope. Focused practice projects like Verra took about a week, and Strawberry Matcha took two. Larger product work runs longer: MedTrack took 3.5 months with Texas Convergent, and Hook'd Closet was built in phases over 5 months."],
+    ["What tools do you use? (Figma, etc.)","Figma is my go-to, from wireframes to hi-fi prototypes, with FigJam for ideation and Notion for documentation. To bring designs to life I use React, TypeScript, and Tailwind CSS with Supabase and Vercel, plus Squarespace for websites."],
+    ["What does Urban Studies bring to your work?","Urban Studies taught me to design for whole communities, not just individual users. It shapes how I think about accessibility and equity, so what I build works for the diverse people who actually use it."],
+    ["What does your ideal project brief look like?","A clear problem, real users to learn from, and room to research before designing. I like briefs that name the organization's goals up front, so I can meet them while genuinely serving the people who use the product."]
+  ];
+
+  var ABOUT = {
+    intro:["Introduction","<p>I'm Chloe Phan, a sophomore studying Informatics and Urban Studies at the University of Texas at Austin, with a passion for UX/UI design, graphic design, programming, and city planning. I bring hands-on experience designing front-end interfaces for apps and websites, with proven success in usability and accessibility across diverse user groups.</p><p>Sitting at the intersection of technology, design, and urban planning, I bring a unique perspective to my work, one focused on creating impactful results that align with an organization's goals while genuinely serving the people who use them.</p>"],
+    education:["Education","<p><b>The University of Texas at Austin</b></p><ul><li>Informatics and Urban Studies majors</li><li>Business minor</li><li>Aug 2025 to May 2029 (expected)</li></ul>"],
+    experience:["Experience","<ul><li><b>Product Designer, Texas Convergent</b><br>Designed MedTrack, a pre-med guidance platform (3.5 months, 2026)</li><li><b>Web Designer, Hook’d Magazine</b><br>Designed Hook’d Closet, a shop-the-issue system (5 months, 2026)</li></ul>"],
+    skills:["Skills","<ul><li><b>Design:</b> Figma, FigJam, user and competitor research, wireframing, hi-fi prototyping, component libraries and design tokens, branding</li><li><b>Build:</b> React, TypeScript, Tailwind CSS, Supabase, Vercel, Squarespace</li><li><b>Organize:</b> Notion</li></ul>"],
+    hobbies:["Hobbies","<p>Outside of product work I paint in oils, make collages and graphic pieces, design nail sets, and make matcha (the drink behind my Strawberry Matcha project).</p><p>You can see more in my <a href=\"#playground\" data-go=\"playground\">Playground</a>.</p>"]
+  };
+
+  var $ = function(s,r){return (r||document).querySelector(s)};
+  var $$ = function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+  function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}
+
+  // Cards (home + works)
+  var cardsHtml = PROJECTS.map(function(p){
+    return '<a class="card" href="#'+p.id+'" data-go="'+p.id+'"><img src="img/'+p.card+'.webp" width="350" height="237" alt="'+esc(p.name)+' preview"><h3>'+esc(p.name)+'</h3><p>'+esc(p.blurb)+'</p><span class="tag">'+esc(p.tag)+'</span></a>';
+  }).join("");
+  $$("[data-cards]").forEach(function(el){el.innerHTML = cardsHtml});
+
+  // Sneak peek strip
+  $("#strip").innerHTML = PEEK.map(function(x){
+    return '<a href="#'+x[2]+'" data-go="'+x[2]+'" aria-label="'+esc(x[3])+'"><img src="img/'+x[0]+'.webp" style="--h:'+x[1]+'px" alt="'+esc(x[3])+'"></a>';
+  }).join("");
+  $$("[data-strip]").forEach(function(b){
+    b.addEventListener("click",function(){var s=$("#strip");s.scrollBy({left:Number(b.dataset.strip)*s.clientWidth*0.7,behavior:"instant"})});
+  });
+
+  // FAQ accordion
+  $("#faq").innerHTML = FAQ.map(function(f,i){
+    return '<div><button class="acc-q" type="button" id="q'+i+'" aria-expanded="false" aria-controls="a'+i+'"><span>'+esc(f[0])+'</span><i class="chev" aria-hidden="true"></i></button><div class="acc-a" id="a'+i+'" role="region" aria-labelledby="q'+i+'" hidden><p>'+esc(f[1])+'</p></div></div>';
+  }).join("");
+  $$(".acc-q").forEach(function(b){
+    b.addEventListener("click",function(){var open=b.getAttribute("aria-expanded")==="true";b.setAttribute("aria-expanded",String(!open));$("#"+b.getAttribute("aria-controls")).hidden=open});
+  });
+
+  // About tabs
+  function showTab(key){
+    var t = ABOUT[key];
+    $("#about-panel").innerHTML = '<h3>'+t[0]+'</h3>'+t[1]+(key==="intro"?'<p class="about-hint">Tap a petal on the flower to read more.</p>':'');
+    $("#about-panel").setAttribute("aria-labelledby","t-"+key);
+    $$(".petal").forEach(function(p){p.setAttribute("aria-selected",String(p.dataset.tab===key))});
+  }
+  $$(".petal").forEach(function(p){p.addEventListener("click",function(){showTab(p.dataset.tab)})});
+  showTab("intro");
+
+  // Connect sections
+  var tpl = $("#connect-tpl");
+  $$("[data-connect]").forEach(function(slot){
+    var node = tpl.content.cloneNode(true);
+    if (slot.dataset.bg==="works") node.querySelector(".art").src = "img/works-connect-bg.webp";
+    if (slot.dataset.bg==="pg") node.querySelector(".art").src = "img/pg-connect-bg.webp";
+    slot.replaceWith(node);
+  });
+  $$("[data-copy]").forEach(function(b){
+    b.addEventListener("click",function(){
+      var note = b.parentNode.querySelector(".copy-note"), addr = b.dataset.copy;
+      function done(msg){note.textContent = msg}
+      try{
+        navigator.clipboard.writeText(addr).then(function(){done("Email copied to clipboard")},function(){selectText(b);done("Press Ctrl+C or ⌘C to copy")});
+      }catch(e){selectText(b);done("Press Ctrl+C or ⌘C to copy")}
+    });
+  });
+  function selectText(b){var r=document.createRange();r.selectNodeContents(b.querySelector("span"));var s=getSelection();s.removeAllRanges();s.addRange(r)}
+
+  // Playground masonry + lightbox
+  $("#masonry").innerHTML = ART.map(function(a){
+    return '<figure><button type="button" data-lb="'+a[0]+'" aria-label="View '+esc(a[1])+'"><img src="img/'+a[0]+'.webp" alt="'+esc(a[1])+'"></button><figcaption>'+esc(a[1])+'</figcaption></figure>';
+  }).join("");
+  var lb = $("#lightbox"), lastFocus = null;
+  $$("[data-lb]").forEach(function(b){
+    b.addEventListener("click",function(){
+      lastFocus = b; var img = b.querySelector("img");
+      $("#lb-img").src = img.src; $("#lb-img").alt = img.alt; $("#lb-cap").textContent = img.alt;
+      lb.hidden = false; $(".lb-close").focus();
+    });
+  });
+  function closeLb(){lb.hidden = true; if(lastFocus) lastFocus.focus()}
+  $(".lb-close").addEventListener("click",closeLb);
+  lb.addEventListener("click",function(e){if(e.target===lb) closeLb()});
+  document.addEventListener("keydown",function(e){if(e.key==="Escape" && !lb.hidden) closeLb()});
+
+  // Case study pages
+  function renderCase(p){
+    var i = PROJECTS.indexOf(p), next = PROJECTS[(i+1)%PROJECTS.length];
+    var secs = p.sections.map(function(s){
+      var body = Array.isArray(s[1]) ? '<ul>'+s[1].map(function(li){return '<li>'+esc(li)+'</li>'}).join("")+'</ul>' : '<p>'+esc(s[1])+'</p>';
+      return '<h3>'+esc(s[0])+'</h3>'+body;
+    }).join("");
+    var site = (p.site && HOOKD_URL) ? '<a class="site-btn" href="'+esc(HOOKD_URL)+'" target="_blank" rel="noopener">See website here!</a>' : '';
+    var titleKey = {medtrack:"title-medtrack",verra:"title-verra",matcha:"title-matcha",hookd:"title-hookd"}[p.id];
+    var heroKey = {medtrack:"ms-hero",verra:"vr-hero",matcha:"sm-hero",hookd:"hk-hero"}[p.id];
+    $("#case").innerHTML =
+      '<h1 class="sr">'+esc(p.name)+'</h1>'+
+      '<img class="case-title" src="img/'+titleKey+'.webp" width="1200" height="180" alt="'+esc(p.name)+'">'+
+      '<span class="tag">'+esc(p.tag)+'</span>'+
+      '<p class="case-intro">'+esc(p.intro)+'</p>'+
+      '<img class="case-hero" src="img/'+heroKey+'.webp" width="824" height="558" alt="'+esc(p.name)+' mockup">'+
+      '<div class="overview"><h2>Project Overview</h2><dl class="meta">'+p.meta.map(function(m){return '<dt>'+esc(m[0])+':</dt><dd>'+esc(m[1])+'</dd>'}).join("")+'</dl>'+secs+'</div>'+
+      '<div class="gallery">'+p.gallery.map(function(g){return '<img'+(g[2]?' class="wide"':'')+' src="img/'+g[0]+'.webp" alt="'+esc(g[1])+'">'}).join("")+'</div>'+
+      site+
+      '<nav class="case-nav" aria-label="Project navigation"><a href="#works" data-go="works"><span class="ar" aria-hidden="true">&larr;</span><span>Back to all works</span></a><a href="#'+next.id+'" data-go="'+next.id+'"><span>'+esc(next.name)+'</span><span class="ar" aria-hidden="true">&rarr;</span></a></nav>';
+  }
+
+  // Instant router: swap views with no animation and jump to top
+  var VIEWS = ["home","works","playground"];
+  function route(key, push){
+    key = (key||"home").replace(/^#/,"");
+    if (key==="about") key = "home";
+    var proj = PROJECTS.filter(function(p){return p.id===key})[0];
+    if (!proj && VIEWS.indexOf(key)<0) key = "home";
+    $$("[data-page]").forEach(function(s){s.hidden = true});
+    if (proj){ renderCase(proj); $('[data-page="case"]').hidden = false; document.title = proj.name+" · Chloe Phan"; }
+    else { $('[data-page="'+key+'"]').hidden = false; document.title = key==="home" ? "Chloe Phan Portfolio" : key.charAt(0).toUpperCase()+key.slice(1)+" · Chloe Phan"; }
+    $$(".nav-link").forEach(function(a){
+      var on = a.dataset.go===key || (proj && a.dataset.go==="works");
+      if (on) a.setAttribute("aria-current","page"); else a.removeAttribute("aria-current");
+    });
+    if (push){ try{ history.pushState({k:key},"","#"+key) }catch(e){} }
+    window.scrollTo({top:0,left:0,behavior:"instant"});
+  }
+  document.addEventListener("click",function(e){
+    var a = e.target.closest("[data-go]");
+    if (a){ e.preventDefault(); route(a.dataset.go,true); return; }
+    var s = e.target.closest("[data-scroll]");
+    if (s){ e.preventDefault(); var t=document.getElementById(s.dataset.scroll); var y=t.getBoundingClientRect().top+scrollY-$(".top").offsetHeight; window.scrollTo({top:y,behavior:"instant"}); }
+  });
+  window.addEventListener("popstate",function(e){route((e.state&&e.state.k)||location.hash,false)});
+  window.addEventListener("hashchange",function(){route(location.hash,false)});
+  route(location.hash,false);
+
+  // Warm every image so switching pages never waits on a download
+  var warm = ["ms-hero","vr-hero","sm-hero","hk-hero","title-medtrack","title-verra","title-matcha","title-hookd"];
+  PROJECTS.forEach(function(p){p.gallery.forEach(function(g){warm.push(g[0])})});
+  function preload(){ warm.forEach(function(k){var im=new Image(); im.decoding="async"; im.src="img/"+k+".webp"; if(im.decode) im.decode().catch(function(){});}); }
+  if (document.readyState==="complete") preload(); else window.addEventListener("load",preload);
+})();
+</script>
+
+</body>
+</html>
