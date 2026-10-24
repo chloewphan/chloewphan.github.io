@@ -77,7 +77,12 @@ button{font:inherit;color:inherit;cursor:pointer}
 .icon{margin:0 auto 6px;height:auto}
 
 /* Hero */
-.hero{max-width:var(--stage);margin:0 auto}
+.hero{max-width:var(--stage);margin:0 auto;position:relative}
+.hero-vid{position:absolute;left:13.667%;top:9.311%;width:16.544%;height:21.376%;transform-origin:0 0;rotate:-25.436deg;object-fit:cover;pointer-events:none}
+.mock{position:relative;display:block;width:fit-content;max-width:100%;margin-inline:auto}
+.mock>img{display:block}
+.mock>video{position:absolute;object-fit:cover;background:transparent;pointer-events:none}
+video{display:block}
 .hero-img{width:100%;height:auto}
 .see-more{display:block;width:max-content;margin:-70px auto 0;position:relative;font-weight:300;font-size:20px;text-decoration:none;padding:6px 10px}
 .see-more:hover{text-decoration:underline}
@@ -107,7 +112,9 @@ button{font:inherit;color:inherit;cursor:pointer}
 .strip{display:flex;gap:28px;align-items:center;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:12px 45px 18px}
 .strip::-webkit-scrollbar{display:none}
 .strip a{flex:0 0 auto;scroll-snap-align:start;border-radius:12px}
-.strip img{height:var(--h);width:auto}
+.strip img,.strip video{height:var(--h);width:auto}
+.strip video{aspect-ratio:var(--ar);object-fit:cover}
+.strip .mock>video{height:auto}
 .strip a:hover img{filter:brightness(1.04)}
 .arrow{position:absolute;top:50%;translate:0 -50%;width:44px;height:44px;border-radius:50%;border:0;background:var(--blush);color:var(--cocoa);font-size:22px;line-height:1;display:grid;place-items:center;z-index:2;box-shadow:0 2px 6px rgba(58,31,13,.15)}
 .arrow:hover{background:var(--blush-deep)}
@@ -161,7 +168,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 .masonry{columns:3 300px;column-gap:24px;max-width:1100px;margin:56px auto 0}
 .masonry figure{break-inside:avoid;margin:0 0 24px}
 .masonry button{display:block;padding:0;border:0;background:none;width:100%;border-radius:10px;overflow:hidden}
-.masonry img{width:100%;height:auto}
+.masonry img,.masonry video{width:100%;height:auto}
 .masonry button:hover img{filter:brightness(1.05)}
 .masonry figcaption{font-size:14px;font-weight:300;color:var(--cocoa);margin-top:8px}
 .blog .inner{padding-block:60px 40px}
@@ -171,6 +178,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 
 /* Lightbox */
 .lightbox{opacity:0;transition:opacity 200ms var(--ease);position:fixed;inset:0;z-index:100;background:rgba(58,31,13,.82);display:grid;place-items:center;padding:max(24px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(24px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.lightbox video{max-height:82vh;width:auto;max-width:100%;border-radius:10px;margin:0 auto}
 .lightbox img{max-height:82vh;width:auto;max-width:100%;border-radius:10px}
 .lightbox p{color:#fff;text-align:center;margin:12px 0 0;font-weight:300}
 .lb-close{position:absolute;top:max(14px,env(safe-area-inset-top,0px));right:max(14px,env(safe-area-inset-right,0px));width:44px;height:44px;border-radius:50%;border:0;background:var(--blush);color:var(--cocoa);font-size:24px;line-height:1}
@@ -192,6 +200,8 @@ button{font:inherit;color:inherit;cursor:pointer}
 .gallery{display:flex;flex-direction:column;gap:56px;align-items:center;margin-top:72px}
 .gallery img{width:min(952px,100%);height:auto}
 .gallery img.wide{width:min(1089px,100%)}
+.gallery .mock{width:min(1089px,100%)}
+.gallery .mock>img{width:100%}
 .site-btn{display:flex;justify-content:center;align-items:center;max-width:460px;min-height:56px;margin:56px auto 0;background:var(--blush);border-radius:10px;text-decoration:none;font-size:15px}
 .site-btn:hover{background:var(--blush-deep)}
 .case-nav{display:flex;justify-content:space-between;align-items:center;gap:20px;max-width:1000px;margin:90px auto 0;flex-wrap:wrap}
@@ -213,7 +223,8 @@ button{font:inherit;color:inherit;cursor:pointer}
   .cards{grid-template-columns:minmax(0,432px)}
   .card{min-height:0;border-radius:36px;padding:22px 22px 22px}
   .strip{gap:18px;padding-inline:8px}
-  .strip img{height:calc(var(--h) * .72)}
+  .strip img,.strip video{height:calc(var(--h) * .72)}
+  .strip .mock>video{height:auto}
   .arrow{display:none}
   .links{margin-top:90px}
   .works-sub,.pg-sub{margin-top:-24px}
@@ -246,6 +257,7 @@ button{font:inherit;color:inherit;cursor:pointer}
   <h1 class="sr">Chloe Phan, Product &amp; Visual Designer</h1>
   <div class="hero">
     <img class="hero-img" src="img/home-hero.webp" width="1200" height="1195" alt="Hand-drawn lotus, tulip, and lily pad artwork around the words This is Chloe, Product and Visual Designer, with two of Chloe's art pieces.">
+    <video class="hero-vid" src="vid/twice.mp4" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video>
     <a class="see-more" href="#about" data-scroll="about">See more below!</a>
   </div>
 
@@ -345,7 +357,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 
 <div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Artwork preview">
   <button class="lb-close" type="button" aria-label="Close preview">&times;</button>
-  <figure style="margin:0"><img id="lb-img" alt=""><p id="lb-cap"></p></figure>
+  <figure style="margin:0"><img id="lb-img" alt=""><video id="lb-vid" muted loop playsinline controls hidden></video><p id="lb-cap"></p></figure>
 </div>
 
 <template id="connect-tpl">
@@ -381,7 +393,7 @@ button{font:inherit;color:inherit;cursor:pointer}
                ["What I Designed","MedTrack, a single platform that guides students through every step of the pre-med journey."],
                ["Key Features",["AI chat advisor for on-demand guidance","Admissions chance calculator","Application organizer","Timeline tracker"]],
                ["My Process","I started with user and competitor research to find the gaps, sketched lo-fi wireframes around the features that mattered most, then refined them into hi-fi designs through iteration and feedback."]],
-     gallery:[["ms-g1","Opportunities page and chance calculator on two laptops"],["ms-g2","MedTrack dashboard home with sidebar navigation"],["ms-g3","Welcome dashboard with acceptance probability and Texas schools list"],["ms-g4","MedTrack sign-up screen on a laptop",true]]},
+     gallery:[["ms-g1","Opportunities page and chance calculator on two laptops"],["ms-g2","MedTrack dashboard home with sidebar navigation"],["ms-g3","Welcome dashboard with acceptance probability and Texas schools list"],["ms-g4","MedTrack demo on a laptop",true,{mock:"medtrack",box:[20.33,12.23,59.57,60.05]}]]},
     {id:"verra", name:"Verra", tag:"UX/UI Design", card:"card-verra",
      blurb:"Mockup of skincare brand promoting simple, soothing ingredients",
      intro:"Verra is a mockup skincare brand inspired by Korean serum products, created to practice UX/UI design. It gave me space to experiment with branding and apply my skills within a specific aesthetic.",
@@ -397,7 +409,7 @@ button{font:inherit;color:inherit;cursor:pointer}
      sections:[["The Goal","A branding and UX/UI practice project for a food and beverage product, inspired by a strawberry matcha I made."],
                ["What I Designed","A brand identity and website with a full shopping system."],
                ["Key Screens",["Hero page showcasing the signature Strawberry Matcha","Fruit Flavored Matcha menu with Blueberry, Raspberry, and Guava options","Buy and purchase flow"]]],
-     gallery:[["sm-g1","Fruit Flavored Matcha menu on a laptop"],["sm-g2","How it's made hero page with strawberry matcha cups"],["sm-g3","Build your matcha order page on a laptop on a desk"],["sm-g4","Fruit Flavored Matcha menu with blueberry, raspberry, and guava",true]]},
+     gallery:[["sm-g1","Fruit Flavored Matcha menu on a laptop"],["sm-g2","How it's made hero page with strawberry matcha cups"],["sm-g3","Build your matcha order page on a laptop on a desk"],["sm-g4","Strawberry Matcha site demo on a laptop",true,{mock:"matcha",box:[20.36,11.31,58.69,61.46]}]]},
     {id:"hookd", name:"Hook’d Closet", tag:"UX/UI Design", card:"card-hookd",
      blurb:"Designed a closet feature for Hook'd Magazine, allowing readers to shop items featured directly from the issue.",
      intro:"Hook'd Magazine needed a centralized way for readers to shop clothing straight from the issue, as well as view each outfit on its own. I designed a closet system that lets users browse and buy featured pieces directly.",
@@ -409,14 +421,14 @@ button{font:inherit;color:inherit;cursor:pointer}
   ];
 
   var PEEK = [
-    ["peek-1",333,"medtrack","MedTrack sign-up screen"],["peek-2",284,"verra","Verra ingredients screen"],["peek-3a",231,"verra","Verra landing screen"],["peek-3b",242,"verra","Verra product detail screen"],
-    ["peek-4",272,"playground","Off the Record collage"],["peek-5",238,"matcha","Fruit Flavored Matcha menu"],["peek-6",284,"playground","Green Infrastructure collage"],["peek-7",289,"playground","TWICE collage"],["peek-8",221,"playground","Oil painting of deer"]
+    ["peek-1",333,"medtrack","MedTrack sign-up screen",{mock:"medtrack",box:[20.33,12.23,59.58,60.05]}],["peek-2",284,"verra","Verra ingredients screen"],["peek-3a",231,"verra","Verra landing screen"],["peek-3b",242,"verra","Verra product detail screen"],
+    ["peek-4",272,"playground","Off the Record collage",{full:"off",ar:"153/272"}],["peek-5",238,"matcha","Fruit Flavored Matcha menu",{full:"matcha",ar:"364/238"}],["peek-6",284,"playground","Green Infrastructure collage"],["peek-7",289,"playground","TWICE collage",{full:"twice",ar:"241/289"}],["peek-8",221,"playground","Oil painting of deer"]
   ];
 
   var ART = [
-    ["pg-1","Strawberry Matcha website"],["pg-2","TWICE collage"],["pg-3","Verra landing screen"],["pg-4","Green Infrastructure collage"],
-    ["pg-5","Oil painting of deer"],["pg-6","MedTrack mockups"],["pg-7","Summer Rush ’26 graphic, Gamma Chapter"],["pg-8","Hook’d Magazine contributors spread with my artwork"],
-    ["pg-9","Off the Record collage"],["pg-10","Becoming a Longhorn, creative project for LA 101"],["pg-11","Oil painting of a young cowboy on horseback"],["pg-12","Hand-painted nail sets"]
+    ["pg-1","Strawberry Matcha website"],["pg-2","TWICE collage","twice"],["pg-3","Verra landing screen"],["pg-4","Green Infrastructure collage"],
+    ["pg-5","Oil painting of deer"],["pg-6","MedTrack mockups"],["pg-7","Summer Rush ’26 graphic, Gamma Chapter","rush","rush-poster"],["pg-8","Hook’d Magazine contributors spread with my artwork"],
+    ["pg-9","Off the Record collage","off"],["pg-10","Becoming a Longhorn, creative project for LA 101"],["pg-11","Oil painting of a young cowboy on horseback"],["pg-12","Hand-painted nail sets"]
   ];
 
   var FAQ = [
@@ -445,9 +457,16 @@ button{font:inherit;color:inherit;cursor:pointer}
   }).join("");
   $$("[data-cards]").forEach(function(el){el.innerHTML = cardsHtml});
 
+  // Video helpers: silent looping clips, either replacing a still or playing inside a device mockup
+  function vtag(key, attrs){ return '<video src="vid/'+key+'.mp4" autoplay muted loop playsinline preload="auto"'+(attrs||'')+'></video>'; }
+  function mock(imgHtml, m){ var b=m.box; return '<span class="mock">'+imgHtml+vtag(m.mock,' aria-hidden="true" style="left:'+b[0]+'%;top:'+b[1]+'%;width:'+b[2]+'%;height:'+b[3]+'%"')+'</span>'; }
+
   // Sneak peek strip
   $("#strip").innerHTML = PEEK.map(function(x){
-    return '<a href="#'+x[2]+'" data-go="'+x[2]+'" aria-label="'+esc(x[3])+'"><img src="img/'+x[0]+'.webp" style="--h:'+x[1]+'px" alt="'+esc(x[3])+'"></a>';
+    var o = x[4] || {}, img = '<img src="img/'+x[0]+'.webp" style="--h:'+x[1]+'px" alt="'+esc(x[3])+'">', inner = img;
+    if (o.full) inner = vtag(o.full,' poster="img/'+x[0]+'.webp" style="--h:'+x[1]+'px;--ar:'+o.ar+'" aria-label="'+esc(x[3])+'"');
+    if (o.mock) inner = mock(img, o);
+    return '<a href="#'+x[2]+'" data-go="'+x[2]+'" aria-label="'+esc(x[3])+'">'+inner+'</a>';
   }).join("");
   $$("[data-strip]").forEach(function(b){
     b.addEventListener("click",function(){var s=$("#strip");s.scrollBy({left:Number(b.dataset.strip)*s.clientWidth*0.7,behavior:smooth()})});
@@ -493,17 +512,21 @@ button{font:inherit;color:inherit;cursor:pointer}
 
   // Playground masonry + lightbox
   $("#masonry").innerHTML = ART.map(function(a){
-    return '<figure><button type="button" data-lb="'+a[0]+'" aria-label="View '+esc(a[1])+'"><img src="img/'+a[0]+'.webp" alt="'+esc(a[1])+'"></button><figcaption>'+esc(a[1])+'</figcaption></figure>';
+    var poster = 'img/'+(a[3]||a[0])+'.webp';
+    var media = a[2] ? vtag(a[2],' poster="'+poster+'" aria-label="'+esc(a[1])+'"') : '<img src="'+poster+'" alt="'+esc(a[1])+'">';
+    return '<figure><button type="button" data-lb="'+a[0]+'"'+(a[2]?' data-vid="'+a[2]+'"':'')+' aria-label="View '+esc(a[1])+'">'+media+'</button><figcaption>'+esc(a[1])+'</figcaption></figure>';
   }).join("");
   var lb = $("#lightbox"), lastFocus = null;
   $$("[data-lb]").forEach(function(b){
     b.addEventListener("click",function(){
-      lastFocus = b; var img = b.querySelector("img");
-      $("#lb-img").src = img.src; $("#lb-img").alt = img.alt; $("#lb-cap").textContent = img.alt;
+      lastFocus = b; var label = b.getAttribute("aria-label").replace(/^View /,""), lv = $("#lb-vid"), li = $("#lb-img");
+      if (b.dataset.vid){ li.hidden = true; lv.hidden = false; lv.src = "vid/"+b.dataset.vid+".mp4"; lv.play().catch(function(){}); }
+      else { lv.hidden = true; lv.pause(); li.hidden = false; li.src = b.querySelector("img").src; li.alt = label; }
+      $("#lb-cap").textContent = label;
       lb.hidden = false; requestAnimationFrame(function(){requestAnimationFrame(function(){lb.style.opacity=1})}); $(".lb-close").focus();
     });
   });
-  function closeLb(){lb.style.opacity=0; setTimeout(function(){lb.hidden = true},200); if(lastFocus) lastFocus.focus()}
+  function closeLb(){$("#lb-vid").pause(); lb.style.opacity=0; setTimeout(function(){lb.hidden = true},200); if(lastFocus) lastFocus.focus()}
   $(".lb-close").addEventListener("click",closeLb);
   lb.addEventListener("click",function(e){if(e.target===lb) closeLb()});
   document.addEventListener("keydown",function(e){if(e.key==="Escape" && !lb.hidden) closeLb()});
@@ -525,13 +548,15 @@ button{font:inherit;color:inherit;cursor:pointer}
       '<p class="case-intro">'+esc(p.intro)+'</p>'+
       '<img class="case-hero" src="img/'+heroKey+'.webp" width="824" height="558" alt="'+esc(p.name)+' mockup">'+
       '<div class="overview"><h2>Project Overview</h2><dl class="meta">'+p.meta.map(function(m){return '<dt>'+esc(m[0])+':</dt><dd>'+esc(m[1])+'</dd>'}).join("")+'</dl>'+secs+'</div>'+
-      '<div class="gallery">'+p.gallery.map(function(g){return '<img'+(g[2]?' class="wide"':'')+' src="img/'+g[0]+'.webp" alt="'+esc(g[1])+'">'}).join("")+'</div>'+
+      '<div class="gallery">'+p.gallery.map(function(g){var img='<img'+(g[2]?' class="wide"':'')+' src="img/'+g[0]+'.webp" alt="'+esc(g[1])+'">'; return g[3] ? mock(img, g[3]) : img}).join("")+'</div>'+
       site+
       '<nav class="case-nav" aria-label="Project navigation"><a href="#works" data-go="works"><span class="ar" aria-hidden="true">&larr;</span><span>Back to all works</span></a><a href="#'+next.id+'" data-go="'+next.id+'"><span>'+esc(next.name)+'</span><span class="ar" aria-hidden="true">&rarr;</span></a></nav>';
   }
 
   // Instant router: swap views with no animation and jump to top
   var VIEWS = ["home","works","playground"];
+  var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function playIn(root){ $$("video",root).forEach(function(v){ if (v.id==="lb-vid") return; if (reduce){ v.pause(); v.controls = true; } else { v.muted = true; var p = v.play(); if (p) p.catch(function(){}); } }); }
   function smooth(){return matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"}
   var current = null, leaving = null;
   function route(key, push){
@@ -557,6 +582,7 @@ button{font:inherit;color:inherit;cursor:pointer}
     window.scrollTo({top:0,left:0,behavior:"instant"});
     current = proj ? $('[data-page="case"]') : $('[data-page="'+key+'"]');
     void current.offsetWidth; current.classList.add("enter");
+    playIn(current);
   }
   document.addEventListener("click",function(e){
     var a = e.target.closest("[data-go]");
